@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libpq-dev \
     zlib1g-dev \
+    git \
     && rm -r /var/lib/apt/lists/* \
     && docker-php-ext-install \
     intl \
@@ -16,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     pdo_pgsql \
     pgsql \
     zip \
-    opcache
+    opcache 
 
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
