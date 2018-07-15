@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::group(['prefix' => 'auth'], function(){
     Route::post('login',['as' => 'auth.login', 'uses' => 'AuthController@login']);
 });
