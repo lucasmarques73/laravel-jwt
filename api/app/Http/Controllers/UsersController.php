@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Model\User;
 
 class UsersController extends Controller
@@ -91,17 +92,16 @@ class UsersController extends Controller
             ],204);    
         }
 
+        $data = $request->all();
+
         $validator = Validator::make($data,[
-    			'name' => 'required|string|max:255',
-            	'email' => 'required|string|email|max:255|unique:users',
-            	'password' => 'required|min:6',
+                'name' => 'required|string|max:255',
+                'email' => ['email','required',Rule::unique('users')->ignore($user->id)]
             ]);
             
     	if ($validator->fails()) {
     		return response()->json($validator->errors(),400);
     	}
-
-        $data = $request->all();
 
         $user->fill($data);
         $user->save();
