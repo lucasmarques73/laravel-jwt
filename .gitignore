@@ -1,5 +1,4 @@
-docker/nginx/logs/
-/docker/nginx/logs/*
+/docker/nginx/logs
 /api/public/hot
 /api/node_modules
 /api/public/storage
