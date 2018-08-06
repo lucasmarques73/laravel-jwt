@@ -48,7 +48,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+        if($exception instanceof \Prettus\Validator\Exceptions\ValidatorException){
+            return response()->json(['error' => true,'message' => $exception->getMessageBag()],400);
+        } else if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
             return response()->json(['error' => true,'message' => 'token_expired'], $exception->getStatusCode());
         } else if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json(['error' => true,'message' => 'token_invalid'], $exception->getStatusCode());
