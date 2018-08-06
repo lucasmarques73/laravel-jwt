@@ -25,7 +25,6 @@ services:
       - 80:80
     volumes:
       - ./docker/nginx:/etc/nginx/conf.d
-      - ./docker/nginx/logs:/var/log/nginx
     links:
       - php
       - database
