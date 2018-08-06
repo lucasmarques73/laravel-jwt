@@ -17,6 +17,8 @@ services:
       - "POSTGRES_PASSWORD=laravel"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - internal
   php:
     build: ./docker
     container_name: laravel-jwt-php
@@ -26,6 +28,8 @@ services:
       - database
     depends_on:
       - database
+    networks:
+      - internal
   api-laravel:
     image: nginx:latest
     container_name: laravel-jwt-nginx
