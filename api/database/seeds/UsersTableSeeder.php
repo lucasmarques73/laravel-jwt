@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class UsersTableSeeder extends Seeder
         factory(\App\Model\User::class)->create([
             'name' => 'Lucas Marques',
             'email' => 'lucasmarques73@hotmail.com',
-            'password' => bcrypt('secret'),
+            'password' => Hash::make('secret'),
             'remember_token' => str_random(10),
         ]);
     }
